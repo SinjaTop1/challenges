@@ -1,110 +1,105 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import { CHALLENGES } from '../constants';
-import { Category, Level } from '../types';
-import { Filter, Search } from 'lucide-react';
+import { Category } from '../types';
+import { ArrowRight, Lock, Sparkles } from 'lucide-react';
+
+// Show only a curated preview of challenges - diverse categories, interesting ones
+const PREVIEW_CHALLENGES = [
+  'walk-100',
+  'catch-fish',
+  'light-fire',
+  'emergency-kit',
+  'navigate-gps',
+  'panic-control',
+  'camp-overnight',
+  'rope-work',
+  'cook-food',
+];
 
 const ChallengeLibrary: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<Category | 'All'>('All');
-  const [selectedLevel, setSelectedLevel] = useState<Level | 'All'>('All');
-  const [searchQuery, setSearchQuery] = useState('');
+  const previewChallenges = CHALLENGES.filter(challenge => 
+    PREVIEW_CHALLENGES.includes(challenge.id)
+  );
 
-  const filteredChallenges = useMemo(() => {
-    return CHALLENGES.filter(challenge => {
-      const matchesCategory = selectedCategory === 'All' || challenge.category === selectedCategory;
-      const matchesSearch = challenge.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            Object.values(challenge.levels).some(l => l.toLowerCase().includes(searchQuery.toLowerCase()));
-      return matchesCategory && matchesSearch;
-    });
-  }, [selectedCategory, searchQuery]);
+  // Group by category for better visual organization
+  const challengesByCategory = previewChallenges.reduce((acc, challenge) => {
+    if (!acc[challenge.category]) {
+      acc[challenge.category] = [];
+    }
+    acc[challenge.category].push(challenge);
+    return acc;
+  }, {} as Record<Category, typeof previewChallenges>);
 
   return (
     <div className="bg-stone-100 py-24 border-t border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-900">Challenge Library</h2>
-          <p className="mt-4 text-stone-600 mb-2">Explore the skills. Filter by category to find your weak spots.</p>
-          <p className="text-sm text-orange-600 font-semibold bg-orange-50 px-4 py-2 rounded-lg inline-block border border-orange-200">
-            📄 Note: These are brief descriptions. Sign up to download the complete PDF with detailed explanations for all 28 challenges!
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4">A Glimpse of What Awaits</h2>
+          <p className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto mb-6">
+            Here's a preview of the challenges you'll tackle. Each one builds real competence across different domains of self-reliance.
           </p>
+          <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 rounded-lg px-4 py-2 text-sm text-orange-700 font-semibold">
+            <Sparkles className="w-4 h-4" />
+            <span>28 challenges total • 3 difficulty levels each</span>
+          </div>
         </div>
 
-        {/* Filters */}
-        <div className="bg-white p-6 rounded-xl shadow-sm mb-12 flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="relative w-full md:w-1/3">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-stone-400 w-5 h-5" />
-                <input 
-                    type="text" 
-                    placeholder="Search challenges..." 
-                    className="w-full pl-10 pr-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                />
+        {/* Preview Grid - Show challenges grouped by category */}
+        <div className="space-y-12 mb-12">
+          {Object.entries(challengesByCategory).map(([category, challenges]) => (
+            <div key={category} className="bg-white rounded-2xl p-8 shadow-sm border border-stone-200">
+              <h3 className="text-xl font-bold text-stone-900 mb-6 pb-3 border-b border-stone-200">
+                {category}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {challenges.map((challenge) => (
+                  <div 
+                    key={challenge.id} 
+                    className="group p-4 rounded-lg border border-stone-200 hover:border-orange-300 hover:bg-orange-50/30 transition-all cursor-pointer"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <h4 className="font-semibold text-stone-900 group-hover:text-orange-700 transition-colors">
+                        {challenge.title}
+                      </h4>
+                      <Lock className="w-4 h-4 text-stone-400 flex-shrink-0 mt-0.5" />
+                    </div>
+                    <p className="text-xs text-stone-500 mt-2">
+                      Available in full PDF
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-                <div className="relative">
-                    <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-stone-400 w-4 h-4" />
-                    <select 
-                        className="pl-10 pr-8 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 appearance-none text-stone-700 w-full sm:w-auto cursor-pointer"
-                        value={selectedCategory}
-                        onChange={(e) => setSelectedCategory(e.target.value as Category | 'All')}
-                    >
-                        <option value="All">All Categories</option>
-                        {Object.values(Category).map(c => <option key={c} value={c}>{c}</option>)}
-                    </select>
-                </div>
-                <div className="relative">
-                    <select 
-                        className="pl-4 pr-8 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 appearance-none text-stone-700 w-full sm:w-auto cursor-pointer"
-                        value={selectedLevel}
-                        onChange={(e) => setSelectedLevel(e.target.value as Level | 'All')}
-                    >
-                        <option value="All">All Levels</option>
-                        {Object.values(Level).map(l => <option key={l} value={l}>{l}</option>)}
-                    </select>
-                </div>
-            </div>
+          ))}
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredChallenges.length > 0 ? filteredChallenges.map((challenge) => (
-                <div key={challenge.id} className="bg-white rounded-xl shadow-sm border border-stone-200 hover:shadow-md transition-shadow overflow-hidden flex flex-col h-full">
-                    <div className="p-6 border-b border-stone-100">
-                        <span className="inline-block px-2 py-1 bg-stone-100 text-stone-600 text-xs font-bold rounded mb-3 uppercase tracking-wide">
-                            {challenge.category}
-                        </span>
-                        <h3 className="text-xl font-bold text-stone-900">{challenge.title}</h3>
-                    </div>
-                    <div className="p-6 space-y-4 flex-grow bg-stone-50/50">
-                        <div className={`text-sm transition-opacity ${selectedLevel !== 'All' && selectedLevel !== Level.INITIATE ? 'opacity-40' : 'opacity-100'}`}>
-                            <span className="font-bold text-stone-900 mb-1 flex justify-between items-center">
-                              Initiate
-                              <span className="text-xs font-normal text-stone-400 bg-white px-1.5 py-0.5 rounded border border-stone-200">1 pt</span>
-                            </span>
-                            <p className="text-stone-600">{challenge.levels[Level.INITIATE]}</p>
-                        </div>
-                        <div className={`text-sm transition-opacity ${selectedLevel !== 'All' && selectedLevel !== Level.OPERATOR ? 'opacity-40' : 'opacity-100'}`}>
-                             <span className="font-bold text-orange-700 mb-1 flex justify-between items-center">
-                              Operator
-                              <span className="text-xs font-normal text-orange-700/60 bg-white px-1.5 py-0.5 rounded border border-orange-200">3 pts</span>
-                            </span>
-                            <p className="text-stone-700">{challenge.levels[Level.OPERATOR]}</p>
-                        </div>
-                        <div className={`text-sm transition-opacity ${selectedLevel !== 'All' && selectedLevel !== Level.SURVIVOR ? 'opacity-40' : 'opacity-100'}`}>
-                             <span className="font-bold text-stone-900 mb-1 flex justify-between items-center">
-                              Survivor
-                              <span className="text-xs font-normal text-stone-500 bg-white px-1.5 py-0.5 rounded border border-stone-200">5 pts</span>
-                            </span>
-                            <p className="text-stone-600 italic">{challenge.levels[Level.SURVIVOR]}</p>
-                        </div>
-                    </div>
-                </div>
-            )) : (
-                <div className="col-span-full text-center py-20 text-stone-500">
-                    No challenges found matching your filters.
-                </div>
-            )}
+        {/* Call to Action */}
+        <div className="bg-gradient-to-r from-stone-900 to-stone-800 rounded-2xl p-8 md:p-12 text-center text-white">
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to See All 28 Challenges?</h3>
+          <p className="text-stone-300 mb-8 max-w-2xl mx-auto text-lg">
+            Sign up to get the complete PDF with detailed explanations, difficulty breakdowns, safety guidelines, and your personal tracking grid.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20">
+              <div className="text-2xl font-bold text-orange-400">28</div>
+              <div className="text-xs text-stone-300">Initial Challenges</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20">
+              <div className="text-2xl font-bold text-orange-400">6</div>
+              <div className="text-xs text-stone-300">Super Challenges Every 6 Weeks</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20">
+              <div className="text-2xl font-bold text-orange-400">3</div>
+              <div className="text-xs text-stone-300">Difficulty Levels Each</div>
+            </div>
+          </div>
+          <a
+            href="#join"
+            className="inline-flex items-center gap-2 bg-orange-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-orange-700 transition-colors shadow-lg shadow-orange-900/20 text-lg"
+          >
+            Get Your Complete PDF & Grid Access
+            <ArrowRight className="w-5 h-5" />
+          </a>
         </div>
       </div>
     </div>
