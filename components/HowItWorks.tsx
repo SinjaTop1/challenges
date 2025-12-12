@@ -1,5 +1,5 @@
 import React from 'react';
-import { Target, Award, ShieldAlert, Zap, TrendingUp, UserCheck, Shield } from 'lucide-react';
+import { Target, Award, ShieldAlert, Zap, TrendingUp, UserCheck, Shield, FileText } from 'lucide-react';
 import { RANKS } from '../constants';
 
 const HowItWorks: React.FC = () => {
@@ -14,6 +14,60 @@ const HowItWorks: React.FC = () => {
           <p className="mt-4 text-stone-600 max-w-2xl mx-auto">
             Tasks have difficulty. People have rank. Points connect the two.
           </p>
+        </div>
+
+        {/* PDF & Super Challenges Info */}
+        <div className="bg-gradient-to-r from-orange-50 to-stone-50 rounded-2xl p-8 md:p-12 mb-20 border border-orange-100">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-2xl font-bold text-stone-900 mb-4 flex items-center gap-2">
+                  <FileText className="w-6 h-6 text-orange-600" />
+                  The Complete PDF
+                </h4>
+                <p className="text-stone-700 leading-relaxed mb-4">
+                  After signing up, you'll receive a comprehensive PDF containing all <strong className="text-stone-900">28 initial challenges</strong> with detailed, in-depth explanations for each one. The website shows brief descriptions—the PDF has everything you need to succeed.
+                </p>
+                <ul className="space-y-2 text-stone-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-orange-600 font-bold mt-1">✓</span>
+                    <span>Detailed explanations for all 28 challenges</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-orange-600 font-bold mt-1">✓</span>
+                    <span>Printable grid to track your progress</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-orange-600 font-bold mt-1">✓</span>
+                    <span>Safety guidelines and tips</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-2xl font-bold text-stone-900 mb-4 flex items-center gap-2">
+                  <Zap className="w-6 h-6 text-orange-600" />
+                  Super Challenges
+                </h4>
+                <p className="text-stone-700 leading-relaxed mb-4">
+                  Throughout the year, we'll release <strong className="text-stone-900">6 extra super challenges every 6 weeks</strong>. These are advanced challenges that award more points and push your limits even further.
+                </p>
+                <ul className="space-y-2 text-stone-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-orange-600 font-bold mt-1">⚡</span>
+                    <span>6 super challenges released every 6 weeks</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-orange-600 font-bold mt-1">⚡</span>
+                    <span>Higher point values for completion</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-orange-600 font-bold mt-1">⚡</span>
+                    <span>48 total challenges over the full year</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* 1. The Cycle (Steps) */}

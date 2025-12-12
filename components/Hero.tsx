@@ -13,16 +13,19 @@ const Hero: React.FC = () => {
           Become the kind of person <br className="hidden md:block" />
           <span className="text-orange-500">who can handle things.</span>
         </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-xl text-stone-400 mb-10">
+        <p className="mt-4 max-w-2xl mx-auto text-xl text-stone-400 mb-6">
           A 12-month challenge that turns competence into a game: skills, mindset, adventure, and real proof.
+        </p>
+        <p className="max-w-2xl mx-auto text-lg text-orange-400 font-semibold mb-10">
+          Sign up to download the complete PDF with all 28 challenges, in-depth explanations, and a printable grid. Plus, unlock 6 super challenges every 6 weeks throughout the year!
         </p>
         
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
-          <a href="/assets/competence-grid.pdf" target="_blank" className="flex items-center justify-center gap-2 bg-stone-100 text-stone-900 px-8 py-4 rounded-xl font-bold hover:bg-white transition-colors">
-            <Download className="w-5 h-5" />
-            Download Sheet
-          </a>
           <a href="#join" className="flex items-center justify-center gap-2 bg-orange-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-orange-700 transition-colors shadow-lg shadow-orange-900/20">
+            <Download className="w-5 h-5" />
+            Sign Up & Download PDF
+          </a>
+          <a href="https://instagram.com/REPLACE_ME" target="_blank" className="flex items-center justify-center gap-2 bg-stone-800 text-stone-100 px-8 py-4 rounded-xl font-bold hover:bg-stone-700 transition-colors border border-stone-700">
             <Instagram className="w-5 h-5" />
             Join on Instagram
           </a>

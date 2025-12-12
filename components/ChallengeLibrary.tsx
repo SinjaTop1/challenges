@@ -22,7 +22,10 @@ const ChallengeLibrary: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-stone-900">Challenge Library</h2>
-          <p className="mt-4 text-stone-600">Explore the skills. Filter by category to find your weak spots.</p>
+          <p className="mt-4 text-stone-600 mb-2">Explore the skills. Filter by category to find your weak spots.</p>
+          <p className="text-sm text-orange-600 font-semibold bg-orange-50 px-4 py-2 rounded-lg inline-block border border-orange-200">
+            📄 Note: These are brief descriptions. Sign up to download the complete PDF with detailed explanations for all 28 challenges!
+          </p>
         </div>
 
         {/* Filters */}

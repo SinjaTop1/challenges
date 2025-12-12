@@ -6,17 +6,21 @@ const JoinSubmit: React.FC = () => {
     <div className="bg-stone-100 py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl font-bold text-stone-900 mb-6">Ready to Start?</h2>
-            <p className="text-xl text-stone-600 mb-12 max-w-2xl mx-auto">
-                Download the grid. Join the community. Do the work.
+            <p className="text-xl text-stone-600 mb-4 max-w-2xl mx-auto">
+                Sign up to get your complete PDF with all 28 challenges, detailed explanations, and printable grid.
+            </p>
+            <p className="text-lg text-orange-600 font-semibold mb-12 max-w-2xl mx-auto">
+                Plus unlock 6 super challenges every 6 weeks throughout the year!
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a href="/assets/competence-grid.pdf" target="_blank" className="group bg-white p-8 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center">
-                    <div className="p-4 bg-stone-100 rounded-full mb-4 group-hover:bg-stone-200 transition-colors">
-                        <FileText className="w-8 h-8 text-stone-700" />
+                <a href="https://forms.gle/REPLACE_ME" target="_blank" className="group bg-gradient-to-br from-orange-50 to-white p-8 rounded-2xl shadow-md border-2 border-orange-200 hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col items-center">
+                    <div className="p-4 bg-orange-100 rounded-full mb-4 group-hover:bg-orange-200 transition-colors">
+                        <FileText className="w-8 h-8 text-orange-700" />
                     </div>
-                    <h3 className="font-bold text-lg mb-2 text-stone-900">1. Download</h3>
-                    <p className="text-sm text-stone-500">Get the PDF Challenge Sheet</p>
+                    <h3 className="font-bold text-lg mb-2 text-stone-900">1. Sign Up</h3>
+                    <p className="text-sm text-stone-600 font-semibold">Get the Complete PDF</p>
+                    <p className="text-xs text-stone-500 mt-1">28 challenges + detailed guides</p>
                 </a>
 
                 <a href="https://instagram.com/REPLACE_ME" target="_blank" className="group bg-white p-8 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center">

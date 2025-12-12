@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
 import ChallengeLibrary from './components/ChallengeLibrary';
 import PointsAndBadges from './components/PointsAndBadges';
+import Prizes from './components/Prizes';
 import JoinSubmit from './components/JoinSubmit';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
@@ -24,6 +25,9 @@ const App: React.FC = () => {
         </section>
         <section id="points">
           <PointsAndBadges />
+        </section>
+        <section id="prizes">
+          <Prizes />
         </section>
         <section id="faq">
           <FAQ />
