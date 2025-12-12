@@ -18,7 +18,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess }) => {
   // Get your form ID from https://formspree.io/forms
   // After creating a form, you'll get a form ID like 'xrgqyqyz'
   // Also set up email notifications in Formspree settings to send the grid link
-  const FORMSPREE_FORM_ID = 'YOUR_FORMSPREE_FORM_ID'; // e.g., 'xrgqyqyz'
+  const FORMSPREE_FORM_ID = 'mgvgroyo'; // Just the form ID, not the full URL
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
