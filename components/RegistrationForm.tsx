@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, User, CheckCircle, Loader, AlertCircle } from 'lucide-react';
+import { Mail, User, CheckCircle, Loader, AlertCircle, Instagram, FileText, ChevronDown, ChevronUp, X } from 'lucide-react';
 
 interface RegistrationFormProps {
   onSuccess?: (email: string) => void;
@@ -9,10 +9,16 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    instagram: '',
+    desiredResult: '',
+    skillLevel: '',
+    foundUs: '',
+    agreedToTerms: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [showTerms, setShowTerms] = useState(false);
 
   // TODO: Replace with your Formspree form ID
   // Get your form ID from https://formspree.io/forms
@@ -35,6 +41,10 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess }) => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          instagram: formData.instagram || 'Not provided',
+          desiredResult: formData.desiredResult,
+          skillLevel: formData.skillLevel,
+          foundUs: formData.foundUs,
           _subject: 'Competence Grid Registration',
           _replyto: formData.email,
         }),
@@ -68,10 +78,18 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess }) => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const value = e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
+    });
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.checked,
     });
   };
 
@@ -113,7 +131,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess }) => {
         <div>
           <label htmlFor="name" className="block text-sm font-semibold text-stone-700 mb-2">
             <User className="w-4 h-4 inline mr-1" />
-            Name
+            Name <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -130,7 +148,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess }) => {
         <div>
           <label htmlFor="email" className="block text-sm font-semibold text-stone-700 mb-2">
             <Mail className="w-4 h-4 inline mr-1" />
-            Email
+            Email <span className="text-red-500">*</span>
           </label>
           <input
             type="email"
@@ -143,6 +161,170 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess }) => {
             placeholder="your.email@example.com"
           />
         </div>
+
+        <div>
+          <label htmlFor="instagram" className="block text-sm font-semibold text-stone-700 mb-2">
+            <Instagram className="w-4 h-4 inline mr-1" />
+            Instagram Handle <span className="text-stone-400 text-xs">(optional)</span>
+          </label>
+          <div className="relative">
+            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-stone-400">@</span>
+            <input
+              type="text"
+              id="instagram"
+              name="instagram"
+              value={formData.instagram}
+              onChange={handleChange}
+              className="w-full pl-8 pr-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+              placeholder="yourhandle"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="desiredResult" className="block text-sm font-semibold text-stone-700 mb-2">
+            What's your desired result from completing these challenges? <span className="text-red-500">*</span>
+          </label>
+          <select
+            id="desiredResult"
+            name="desiredResult"
+            required
+            value={formData.desiredResult}
+            onChange={handleChange}
+            className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all appearance-none cursor-pointer"
+          >
+            <option value="">Select an option...</option>
+            <option value="personal-growth">Personal growth and self-reliance</option>
+            <option value="physical-prizes">Earn physical prizes (complete all at Operator level)</option>
+            <option value="elite-retreat">Compete for elite retreat (complete all at Survivor level)</option>
+            <option value="skill-building">Build practical skills for emergencies</option>
+            <option value="adventure">Adventure and outdoor experiences</option>
+            <option value="community">Join a community of like-minded people</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="skillLevel" className="block text-sm font-semibold text-stone-700 mb-2">
+            What's your prior skill level in this sort of stuff? <span className="text-red-500">*</span>
+          </label>
+          <select
+            id="skillLevel"
+            name="skillLevel"
+            required
+            value={formData.skillLevel}
+            onChange={handleChange}
+            className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all appearance-none cursor-pointer"
+          >
+            <option value="">Select an option...</option>
+            <option value="complete-beginner">Complete beginner - First time doing this</option>
+            <option value="some-experience">Some experience - Done a few things before</option>
+            <option value="moderate">Moderate - Comfortable with basic skills</option>
+            <option value="experienced">Experienced - Regular outdoor/survival activities</option>
+            <option value="expert">Expert - Advanced skills and training</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="foundUs" className="block text-sm font-semibold text-stone-700 mb-2">
+            How did you find us? <span className="text-red-500">*</span>
+          </label>
+          <select
+            id="foundUs"
+            name="foundUs"
+            required
+            value={formData.foundUs}
+            onChange={handleChange}
+            className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all appearance-none cursor-pointer"
+          >
+            <option value="">Select an option...</option>
+            <option value="instagram">Instagram</option>
+            <option value="friend">Friend/Word of mouth</option>
+            <option value="search">Google/Search engine</option>
+            <option value="youtube">YouTube</option>
+            <option value="reddit">Reddit</option>
+            <option value="podcast">Podcast</option>
+            <option value="other-social">Other social media</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div className="pt-2">
+          <div className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="agreedToTerms"
+              name="agreedToTerms"
+              required
+              checked={formData.agreedToTerms}
+              onChange={handleCheckboxChange}
+              className="mt-1 w-5 h-5 text-orange-600 border-stone-300 rounded focus:ring-orange-500 focus:ring-2 cursor-pointer"
+            />
+            <label htmlFor="agreedToTerms" className="text-sm text-stone-700 cursor-pointer flex-1">
+              I agree to the{' '}
+              <button
+                type="button"
+                onClick={() => setShowTerms(!showTerms)}
+                className="text-orange-600 hover:text-orange-700 font-semibold underline inline-flex items-center gap-1"
+              >
+                Terms and Conditions
+                {showTerms ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+              <span className="text-red-500"> *</span>
+            </label>
+          </div>
+
+          {showTerms && (
+            <div className="mt-4 p-4 bg-stone-50 border border-stone-200 rounded-lg text-sm text-stone-700 space-y-3">
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="font-bold text-stone-900">Terms and Conditions</h4>
+                <button
+                  type="button"
+                  onClick={() => setShowTerms(false)}
+                  className="text-stone-400 hover:text-stone-600"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+              
+              <div className="space-y-2">
+                <p className="font-semibold">1. Assumption of Risk</p>
+                <p>
+                  By participating in The Competence Grid challenges, you acknowledge that these activities involve inherent risks, including but not limited to physical injury, property damage, and other risks associated with outdoor activities, tool use, and physical challenges.
+                </p>
+
+                <p className="font-semibold">2. Personal Responsibility</p>
+                <p>
+                  You are solely responsible for your own safety and well-being. You agree to assess your own physical condition, skill level, and the safety of any activity before attempting any challenge. If you have any health concerns or limitations, consult with a medical professional before participating.
+                </p>
+
+                <p className="font-semibold">3. Release of Liability</p>
+                <p>
+                  You hereby release, waive, discharge, and covenant not to sue The Competence Grid, its creators, operators, affiliates, or any associated parties from any and all liability, claims, demands, actions, or causes of action whatsoever arising out of or related to any loss, damage, or injury, including death, that may be sustained by you while participating in any challenge or activity related to The Competence Grid.
+                </p>
+
+                <p className="font-semibold">4. Safety First</p>
+                <p>
+                  Safety is your responsibility. Always follow local laws, regulations, and safety guidelines. Adapt challenges to your environment, health, and skill level. If a challenge feels dangerous, scale it back or skip it. No challenge is mandatory.
+                </p>
+
+                <p className="font-semibold">5. Legal Compliance</p>
+                <p>
+                  You agree to comply with all applicable local, state, and federal laws and regulations while participating in challenges. The Competence Grid is not responsible for any legal consequences resulting from your participation.
+                </p>
+
+                <p className="font-semibold">6. Voluntary Participation</p>
+                <p>
+                  Your participation in The Competence Grid is entirely voluntary. You may stop participating at any time without penalty.
+                </p>
+
+                <p className="text-xs text-stone-500 mt-4">
+                  By checking this box, you acknowledge that you have read, understood, and agree to these Terms and Conditions.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {submitStatus === 'error' && (
@@ -154,7 +336,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess }) => {
 
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !formData.agreedToTerms}
         className="w-full bg-orange-600 text-white px-6 py-4 rounded-xl font-bold hover:bg-orange-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {isSubmitting ? (
