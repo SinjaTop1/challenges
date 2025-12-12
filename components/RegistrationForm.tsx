@@ -52,15 +52,6 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess }) => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        // Generate the grid link
-        const gridLink = `${window.location.origin}${window.location.pathname}#grid`;
-        
-        // Note: In production, Formspree will send an email with this link
-        // You can customize the email template in Formspree settings
-        // For now, we'll redirect to the grid after a short delay
-        setTimeout(() => {
-          window.location.href = gridLink;
-        }, 3000);
         
         if (onSuccess) {
           onSuccess(formData.email);
@@ -100,19 +91,37 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess }) => {
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="w-8 h-8 text-green-600" />
           </div>
-          <h3 className="text-2xl font-bold text-stone-900 mb-2">Registration Successful!</h3>
-          <p className="text-stone-600 mb-4">
-            Check your email ({formData.email}) for your personalized Competence Grid link with the complete PDF and tracking table.
+          <h3 className="text-2xl font-bold text-stone-900 mb-3">Thank You for Signing Up!</h3>
+          <p className="text-stone-700 mb-3 leading-relaxed">
+            We've received your registration and you're all set!
           </p>
-          <p className="text-sm text-stone-500 mb-6">
-            Redirecting to your grid in a moment...
+          <p className="text-stone-600 mb-4 leading-relaxed">
+            Check your email at <span className="font-semibold text-stone-900">{formData.email}</span> for:
           </p>
-          <a
-            href="#grid"
-            className="inline-flex items-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-700 transition-colors"
-          >
-            Go to Your Grid Now
-          </a>
+          <ul className="text-left text-stone-600 mb-6 space-y-2 max-w-sm mx-auto">
+            <li className="flex items-start gap-2">
+              <span className="text-orange-600 font-bold mt-1">✓</span>
+              <span>Your personalized Competence Grid tracking link</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-orange-600 font-bold mt-1">✓</span>
+              <span>Complete PDF with all 28 challenges and detailed explanations</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-orange-600 font-bold mt-1">✓</span>
+              <span>Printable grid to track your progress</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-orange-600 font-bold mt-1">✓</span>
+              <span>Information about super challenges released every 6 weeks</span>
+            </li>
+          </ul>
+          <p className="text-sm text-stone-500 mb-4">
+            If you don't see the email in your inbox, please check your spam folder.
+          </p>
+          <p className="text-sm text-stone-600 font-medium">
+            Welcome to The Competence Grid! 🎯
+          </p>
         </div>
       </div>
     );
