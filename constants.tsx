@@ -5,232 +5,290 @@ import React from 'react';
 export const CHALLENGES: Challenge[] = [
   {
     id: 'walk-100',
-    title: 'Walk 100 km per year',
+    title: 'Walk Distance (Annual)',
     category: Category.MOVEMENT,
+    description: 'Approach this as a consistency challenge—focus on footwear, pacing, and integration into daily life.',
+    whatYouLearn: 'Discipline through repetition, endurance without intensity, and how small efforts accumulate.',
     levels: {
-      [Level.INITIATE]: '50 km',
-      [Level.OPERATOR]: '100 km',
-      [Level.SURVIVOR]: '200 km',
+      [Level.INITIATE]: 'Walk 2 km daily for one week.',
+      [Level.OPERATOR]: 'Walk 5 km daily for one month.',
+      [Level.SURVIVOR]: 'Accumulate 1,000 km total over the year.',
+    }
+  },
+  {
+    id: 'navigate-gps',
+    title: 'Navigate Without GPS',
+    category: Category.NAVIGATION,
+    description: 'Develop spatial awareness and confidence by navigating without digital tools.',
+    whatYouLearn: 'Orientation, decision-making, and environmental awareness.',
+    levels: {
+      [Level.INITIATE]: 'Navigate a 2 km route in a familiar area using only landmarks.',
+      [Level.OPERATOR]: 'Plan and complete a 10 km hike using a printed map and compass.',
+      [Level.SURVIVOR]: 'Complete a multi-day route (minimum 30 km) using only analog navigation tools.',
+    }
+  },
+  {
+    id: 'bicycle',
+    title: 'Bicycle Maintenance',
+    category: Category.TOOLS,
+    description: 'Understand the bicycle as a system of simple, interdependent parts.',
+    whatYouLearn: 'Mechanics, problem-solving, and independence in mobility.',
+    levels: {
+      [Level.INITIATE]: 'Fix a flat tire and adjust brakes.',
+      [Level.OPERATOR]: 'Perform a full tune-up—chain cleaning, gear adjustment, and brake calibration.',
+      [Level.SURVIVOR]: 'Rebuild or restore a used bicycle to full working condition.',
     }
   },
   {
     id: 'catch-fish',
-    title: 'Catch a fish',
+    title: 'Catch a Fish',
     category: Category.FOOD,
+    description: 'Focus on the process rather than success.',
+    whatYouLearn: 'Patience, respect for resources, and awareness of food systems.',
     levels: {
-      [Level.INITIATE]: 'Buy a fresh fish directly from a fisherman',
-      [Level.OPERATOR]: 'Catch a fish by any legal means',
-      [Level.SURVIVOR]: 'Catch a fish entirely by yourself (gear, location, prep)',
+      [Level.INITIATE]: 'Learn basic fishing techniques and catch a fish with guidance.',
+      [Level.OPERATOR]: 'Catch, clean, and cook a fish independently.',
+      [Level.SURVIVOR]: 'Sustain a full meal for two people from self-caught fish using natural bait and minimal tools.',
     }
   },
   {
-    id: 'car-maint',
-    title: 'Car maintenance',
-    category: Category.SYSTEMS,
+    id: 'purify-water',
+    title: 'Purify Water',
+    category: Category.FOOD,
+    description: 'Treat this as a risk-assessment and problem-solving exercise.',
+    whatYouLearn: 'Critical thinking, basic chemistry, and appreciation for clean water access.',
     levels: {
-      [Level.INITIATE]: 'Change a tire',
-      [Level.OPERATOR]: 'Tire + battery/accumulator',
-      [Level.SURVIVOR]: 'Full check as if car was abandoned',
+      [Level.INITIATE]: 'Learn and demonstrate three water purification methods.',
+      [Level.OPERATOR]: 'Purify and safely drink water from a natural source using a portable filter or boiling.',
+      [Level.SURVIVOR]: 'Build a functional solar still or improvised filtration system and test its effectiveness.',
+    }
+  },
+  {
+    id: 'cook-food',
+    title: 'Cook From Raw Ingredients',
+    category: Category.FOOD,
+    description: 'Reverse convenience by planning, preparing, and transforming basic inputs.',
+    whatYouLearn: 'Self-reliance, budgeting, and control over consumption.',
+    levels: {
+      [Level.INITIATE]: 'Cook a full meal from raw ingredients without pre-made sauces or mixes.',
+      [Level.OPERATOR]: 'Plan and cook three balanced meals for a day using only whole ingredients.',
+      [Level.SURVIVOR]: 'Prepare a three-day meal plan using only locally sourced or self-grown ingredients.',
     }
   },
   {
     id: 'light-fire',
-    title: 'Light a fire',
+    title: 'Light a Fire',
     category: Category.FIRE_SHELTER,
+    description: 'Treat fire as a tool, focusing on safety, control, and sustainability.',
+    whatYouLearn: 'Responsibility, patience, and respect for powerful systems.',
     levels: {
-      [Level.INITIATE]: 'Any fire without matches',
-      [Level.OPERATOR]: 'Same, but in the forest',
-      [Level.SURVIVOR]: 'Keep the fire alive for 5 hours',
-    }
-  },
-  {
-    id: 'emergency-kit',
-    title: 'Emergency kit',
-    category: Category.PREPARATION,
-    levels: {
-      [Level.INITIATE]: 'Make an emergency kit/bag with whatever you already have',
-      [Level.OPERATOR]: 'Get a full kit (we provide a guide)',
-      [Level.SURVIVOR]: 'First-aid competence + fully understand the kit',
-    }
-  },
-  {
-    id: 'rope-work',
-    title: 'Rope work',
-    category: Category.TOOLS,
-    levels: {
-      [Level.INITIATE]: 'Learn 1 heavy-duty knot',
-      [Level.OPERATOR]: 'Learn all basic knots',
-      [Level.SURVIVOR]: 'Build something useful from rope (hammock, logs, shelter)',
+      [Level.INITIATE]: 'Build and light a fire using matches or a lighter.',
+      [Level.OPERATOR]: 'Build and sustain a fire using only natural tinder and a ferro rod.',
+      [Level.SURVIVOR]: 'Start a fire in wet or windy conditions using primitive methods (e.g., bow drill).',
     }
   },
   {
     id: 'camp-overnight',
-    title: 'Camp overnight',
+    title: 'Camp Overnight',
     category: Category.FIRE_SHELTER,
+    description: 'Focus on comfort outside routine.',
+    whatYouLearn: 'Adaptability, mental resilience, and comfort with uncertainty.',
     levels: {
-      [Level.INITIATE]: 'Camp at a campsite (not home)',
-      [Level.OPERATOR]: 'Sleep somewhere outside (non-designated)',
-      [Level.SURVIVOR]: 'Camp independently',
+      [Level.INITIATE]: 'Camp overnight in a designated campsite with full gear.',
+      [Level.OPERATOR]: 'Camp overnight in a remote area with minimal equipment.',
+      [Level.SURVIVOR]: 'Complete a two-night solo camp using only essential gear and self-built fire/shelter.',
+    }
+  },
+  {
+    id: 'build-shelter',
+    title: 'Build a Shelter',
+    category: Category.FIRE_SHELTER,
+    description: 'Focus on protection, thinking about wind, rain, insulation, and stability.',
+    whatYouLearn: 'Planning under constraints and understanding basic physical principles.',
+    levels: {
+      [Level.INITIATE]: 'Set up a tent or tarp shelter.',
+      [Level.OPERATOR]: 'Build a temporary shelter using natural materials.',
+      [Level.SURVIVOR]: 'Construct a weather-resistant shelter capable of overnight use in the wild.',
+    }
+  },
+  {
+    id: 'sos-signals',
+    title: 'SOS & Emergency Signals',
+    category: Category.PREPARATION,
+    description: 'Approach from a rescuer\'s perspective.',
+    whatYouLearn: 'Communication under pressure and realistic emergency thinking.',
+    levels: {
+      [Level.INITIATE]: 'Learn and demonstrate three basic SOS methods (light, sound, ground).',
+      [Level.OPERATOR]: 'Create a visible signal system for a simulated rescue scenario.',
+      [Level.SURVIVOR]: 'Execute a full emergency signaling plan in a remote area, including location marking and visibility testing.',
+    }
+  },
+  {
+    id: 'rope-work',
+    title: 'Rope Work & Knots',
+    category: Category.TOOLS,
+    description: 'Think about load, tension, and safety.',
+    whatYouLearn: 'Applied physics, safety awareness, and practical problem-solving.',
+    levels: {
+      [Level.INITIATE]: 'Learn five essential knots and their uses.',
+      [Level.OPERATOR]: 'Apply knots in real scenarios (camping, hauling, repairs).',
+      [Level.SURVIVOR]: 'Build a functional rope system (e.g., pulley, shelter rig, or rescue line).',
+    }
+  },
+  {
+    id: 'sharpen-knife',
+    title: 'Sharpen a Knife',
+    category: Category.TOOLS,
+    description: 'Focus on consistency and control.',
+    whatYouLearn: 'Precision, patience, and care for equipment.',
+    levels: {
+      [Level.INITIATE]: 'Learn sharpening basics using a whetstone or guided tool.',
+      [Level.OPERATOR]: 'Sharpen and maintain multiple blades to working condition.',
+      [Level.SURVIVOR]: 'Restore a dull or damaged blade to full sharpness manually.',
+    }
+  },
+  {
+    id: 'sew',
+    title: 'Sewing & Clothing Repair',
+    category: Category.TOOLS,
+    description: 'Treat clothing as maintainable.',
+    whatYouLearn: 'Resourcefulness and a repair-oriented mindset.',
+    levels: {
+      [Level.INITIATE]: 'Sew a button or patch by hand.',
+      [Level.OPERATOR]: 'Repair a torn seam or zipper.',
+      [Level.SURVIVOR]: 'Modify or repurpose old clothing into functional gear.',
     }
   },
   {
     id: 'woodwork',
     title: 'Woodwork',
     category: Category.TOOLS,
+    description: 'Work with constraints: material, tools, and accuracy.',
+    whatYouLearn: 'Planning, measurement, and translating ideas into physical results.',
     levels: {
-      [Level.INITIATE]: 'Learn to use basic tools',
-      [Level.OPERATOR]: 'Make something simple',
-      [Level.SURVIVOR]: 'Complete a small woodworking course',
+      [Level.INITIATE]: 'Create a simple wooden object (e.g., spoon, box).',
+      [Level.OPERATOR]: 'Build a small functional item using hand tools only.',
+      [Level.SURVIVOR]: 'Design and complete a complex project requiring joinery or precision fitting.',
     }
   },
   {
-    id: 'turn-off-utilities',
-    title: 'Turn off utilities',
+    id: 'car-maint',
+    title: 'Car Maintenance',
     category: Category.SYSTEMS,
+    description: 'Think in terms of failure scenarios.',
+    whatYouLearn: 'Mechanical confidence and reduced dependency on external help.',
     levels: {
-      [Level.INITIATE]: 'Don’t turn off water (just learn locations)',
-      [Level.OPERATOR]: 'Turn off water safely',
-      [Level.SURVIVOR]: 'Understand shutoffs + risks (safety guide)',
+      [Level.INITIATE]: 'Learn to check oil, tire pressure, and fluids.',
+      [Level.OPERATOR]: 'Replace a tire and perform basic maintenance tasks.',
+      [Level.SURVIVOR]: 'Diagnose and fix a minor mechanical issue independently.',
     }
   },
   {
     id: 'electricity',
-    title: 'Learn basic electricity',
+    title: 'Learn Basic Electricity',
     category: Category.SYSTEMS,
+    description: 'Approach electricity as a logical system.',
+    whatYouLearn: 'System thinking and technical confidence.',
     levels: {
-      [Level.INITIATE]: 'Change a socket',
-      [Level.OPERATOR]: 'Build a simple battery circuit',
-      [Level.SURVIVOR]: 'Use an electric generator/motor',
+      [Level.INITIATE]: 'Learn to safely use a multimeter and identify circuits.',
+      [Level.OPERATOR]: 'Wire a simple circuit or repair a household electrical issue.',
+      [Level.SURVIVOR]: 'Build a small off-grid power setup (e.g., solar light or battery system).',
+    }
+  },
+  {
+    id: 'emergency-kit',
+    title: 'Emergency Kit',
+    category: Category.PREPARATION,
+    description: 'Prioritize what matters when systems fail.',
+    whatYouLearn: 'Preparedness without paranoia and practical decision-making.',
+    levels: {
+      [Level.INITIATE]: 'Assemble a basic home emergency kit.',
+      [Level.OPERATOR]: 'Build a portable go-bag for 72-hour survival.',
+      [Level.SURVIVOR]: 'Create a modular kit adaptable for multiple scenarios (home, car, outdoors).',
     }
   },
   {
     id: 'emergency-drill',
-    title: 'Emergency drill',
+    title: 'Emergency Drill',
     category: Category.PREPARATION,
+    description: 'Focus on calm execution, not speed.',
+    whatYouLearn: 'Decision-making under stress and responsibility for others.',
     levels: {
-      [Level.INITIATE]: 'Plan an emergency drill/evacuation',
-      [Level.OPERATOR]: 'Actually practice it',
-      [Level.SURVIVOR]: 'Teach your household + run a surprise drill',
-    }
-  },
-  {
-    id: 'strangers',
-    title: 'Speak to 10 strangers',
-    category: Category.SOCIAL_MINDSET,
-    levels: {
-      [Level.INITIATE]: 'Ask anything',
-      [Level.OPERATOR]: 'Ask for a small favor',
-      [Level.SURVIVOR]: 'Ask someone to buy you food',
-    }
-  },
-  {
-    id: 'panic-control',
-    title: 'Panic control',
-    category: Category.SOCIAL_MINDSET,
-    levels: {
-      [Level.INITIATE]: '1 week practice',
-      [Level.OPERATOR]: '1 month structured practice',
-      [Level.SURVIVOR]: 'Advanced breathing + stress exposure',
-    }
-  },
-  {
-    id: 'navigate-gps',
-    title: 'Navigate without GPS',
-    category: Category.NAVIGATION,
-    levels: {
-      [Level.INITIATE]: 'A → B using printed map',
-      [Level.OPERATOR]: 'Same in unknown area',
-      [Level.SURVIVOR]: 'Unknown area + landmarks + asking strangers',
-    }
-  },
-  {
-    id: 'bicycle',
-    title: 'Bicycle maintenance',
-    category: Category.TOOLS,
-    levels: {
-      [Level.INITIATE]: 'Inflate/change tire',
-      [Level.OPERATOR]: 'Chain + brakes + tire',
-      [Level.SURVIVOR]: 'Assemble a bike from zero',
-    }
-  },
-  {
-    id: 'cook-food',
-    title: 'Cook food',
-    category: Category.FOOD,
-    levels: {
-      [Level.INITIATE]: 'Buy raw products from a farmer & cook',
-      [Level.OPERATOR]: 'Cook something you usually buy (bread etc.)',
-      [Level.SURVIVOR]: 'Cook a full meal with basic tools / fire',
-    }
-  },
-  {
-    id: 'build-shelter',
-    title: 'Build shelter',
-    category: Category.FIRE_SHELTER,
-    levels: {
-      [Level.INITIATE]: 'Tent camping',
-      [Level.OPERATOR]: 'Shelter with materials at hand (no tent)',
-      [Level.SURVIVOR]: 'Forest shelter from found materials',
-    }
-  },
-  {
-    id: 'sos-signals',
-    title: 'SOS signals',
-    category: Category.PREPARATION,
-    levels: {
-      [Level.INITIATE]: 'Campfire signal',
-      [Level.OPERATOR]: 'Multiple emergency signals',
-      [Level.SURVIVOR]: 'Teach + demonstrate',
-    }
-  },
-  {
-    id: 'sew',
-    title: 'Sew',
-    category: Category.TOOLS,
-    levels: {
-      [Level.INITIATE]: 'Patch a hole',
-      [Level.OPERATOR]: 'Fix tears',
-      [Level.SURVIVOR]: 'Craft clothing from raw material',
+      [Level.INITIATE]: 'Conduct a simple household evacuation drill.',
+      [Level.OPERATOR]: 'Simulate a multi-scenario emergency (fire, power outage, flood).',
+      [Level.SURVIVOR]: 'Lead a group through a full emergency simulation with debrief and improvements.',
     }
   },
   {
     id: 'reinforce-household',
-    title: 'Reinforce household',
+    title: 'Reinforce Your Household',
     category: Category.PREPARATION,
+    description: 'Identify weak points and small improvements.',
+    whatYouLearn: 'Risk awareness and proactive problem prevention.',
     levels: {
-      [Level.INITIATE]: 'Improve door lock',
-      [Level.OPERATOR]: 'Reinforce doors/windows',
-      [Level.SURVIVOR]: 'Full security system (physical + cameras)',
+      [Level.INITIATE]: 'Inspect and list potential household vulnerabilities.',
+      [Level.OPERATOR]: 'Implement three improvements (e.g., locks, lighting, storage).',
+      [Level.SURVIVOR]: 'Complete a full home safety audit and reinforcement plan.',
     }
   },
   {
-    id: 'document-prep',
-    title: 'Document preparation',
-    category: Category.PREPARATION,
+    id: 'turn-off-utilities',
+    title: 'Turn Off Utilities',
+    category: Category.SYSTEMS,
+    description: 'Understand when and why these actions matter.',
+    whatYouLearn: 'System awareness and safety competence.',
     levels: {
-      [Level.INITIATE]: 'Basic digital backups',
-      [Level.OPERATOR]: 'Physical copies',
-      [Level.SURVIVOR]: 'Distributed backups + memorize contacts',
+      [Level.INITIATE]: 'Learn how to safely turn off water, gas, and electricity.',
+      [Level.OPERATOR]: 'Practice turning off and restoring utilities safely.',
+      [Level.SURVIVOR]: 'Execute a full utility shutdown and restart during a simulated emergency.',
+    }
+  },
+  {
+    id: 'strangers',
+    title: 'Speak to 10 Strangers',
+    category: Category.SOCIAL_MINDSET,
+    description: 'Focus on managing discomfort.',
+    whatYouLearn: 'Social confidence and emotional regulation.',
+    levels: {
+      [Level.INITIATE]: 'Start conversations with three strangers in one day.',
+      [Level.OPERATOR]: 'Speak to ten strangers over a week, initiating meaningful exchanges.',
+      [Level.SURVIVOR]: 'Hold a five-minute conversation with a stranger daily for two weeks.',
+    }
+  },
+  {
+    id: 'panic-control',
+    title: 'Panic Control',
+    category: Category.SOCIAL_MINDSET,
+    description: 'Treat this as training, not therapy.',
+    whatYouLearn: 'Self-regulation and resilience under pressure.',
+    levels: {
+      [Level.INITIATE]: 'Learn and practice three breathing or grounding techniques.',
+      [Level.OPERATOR]: 'Apply techniques during a stressful or simulated panic situation.',
+      [Level.SURVIVOR]: 'Maintain composure and control during a real high-stress event.',
     }
   },
   {
     id: 'no-money',
-    title: '24-hour no-money challenge',
+    title: '24-Hour No-Money Challenge',
     category: Category.SOCIAL_MINDSET,
+    description: 'Approach as a creativity and constraint exercise.',
+    whatYouLearn: 'Adaptability, humility, and appreciation for systems you rely on.',
     levels: {
-      [Level.INITIATE]: '24 hours with no money, use what you have',
-      [Level.OPERATOR]: '3 days no money',
-      [Level.SURVIVOR]: 'Extreme budget survival with strict rules',
+      [Level.INITIATE]: 'Spend one day without spending money.',
+      [Level.OPERATOR]: 'Spend 24 hours relying only on existing resources and barter.',
+      [Level.SURVIVOR]: 'Spend 48 hours self-sufficiently without money or external help.',
     }
   },
   {
-    id: 'sharpen-knife',
-    title: 'Sharpen a knife',
-    category: Category.TOOLS,
+    id: 'document-prep',
+    title: 'Document Preparation',
+    category: Category.PREPARATION,
+    description: 'Focus on redundancy and foresight.',
+    whatYouLearn: 'Long-term thinking and reduced mental load.',
     levels: {
-      [Level.INITIATE]: 'Basic sharpening',
-      [Level.OPERATOR]: 'Whetstone sharpening',
-      [Level.SURVIVOR]: 'Sharpen tools (saws etc.)',
+      [Level.INITIATE]: 'Gather and organize essential personal documents.',
+      [Level.OPERATOR]: 'Create digital backups and secure storage for all critical files.',
+      [Level.SURVIVOR]: 'Develop a full redundancy plan including emergency access and trusted contacts.',
     }
   },
 ];

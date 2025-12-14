@@ -1,5 +1,5 @@
 import { CHALLENGES } from '../constants';
-import { Category as MainCategory } from '../types';
+import { Category as MainCategory, Level } from '../types';
 import { 
   Footprints, 
   Fish, 
@@ -59,11 +59,27 @@ export const adaptChallengesToTableFormat = (): Category[] => {
     [MainCategory.PREPARATION]: [],
   };
 
-  // Group challenges
+  // Group challenges with detailed information
   CHALLENGES.forEach(challenge => {
     challengesByCategory[challenge.category].push({
       id: challenge.id,
       name: challenge.title,
+      description: challenge.description,
+      whatYouLearn: challenge.whatYouLearn,
+      levels: challenge.levels ? {
+        1: {
+          title: 'Initiate',
+          description: challenge.levels[Level.INITIATE] || '',
+        },
+        3: {
+          title: 'Operator',
+          description: challenge.levels[Level.OPERATOR] || '',
+        },
+        5: {
+          title: 'Survivor',
+          description: challenge.levels[Level.SURVIVOR] || '',
+        },
+      } : undefined,
     });
   });
 

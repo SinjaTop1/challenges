@@ -23,6 +23,8 @@ export interface Challenge {
   id: string;
   title: string;
   category: Category;
+  description?: string;
+  whatYouLearn?: string;
   levels: {
     [Level.INITIATE]: string;
     [Level.OPERATOR]: string;

@@ -5,6 +5,14 @@ export type DifficultyLevel = 1 | 3 | 5;
 export interface Challenge {
   id: string;
   name: string;
+  description?: string;
+  whatYouLearn?: string;
+  levels?: {
+    [key: number]: {
+      title: string;
+      description: string;
+    };
+  };
 }
 
 export interface Category {
@@ -24,4 +32,3 @@ export interface Rank {
 export interface CompletedState {
   [key: string]: boolean; // format: "categoryId-challengeId-level"
 }
-
